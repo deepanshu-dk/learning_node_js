@@ -1,14 +1,22 @@
 const userService = require('../service/user.service');
 
 const getUser = (req, res) => {
-    userService.getUser(2);
-    // res.status(200);
-    // res.json({ message: 'Welcome to get user the API!' });
-    return res.status(200).json({
-        status: true,
-        response: "data ",
-        message: "data created successfully"
-    });
+    try {
+        // throw new Error("This is a test error");
+        userService.getUser(2);
+        return res.status(200).json({
+            status: true,
+            response: "data ",
+            message: "data created successfully"
+        });    
+    } catch (error) {
+        return res.status(422).json({
+            status: true,
+            response: "data ",
+            message: "Something went wrong!"
+        }); 
+    }
+    
 };
 
 const postUser = (req, res) => {
